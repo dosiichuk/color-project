@@ -17,6 +17,11 @@
   width: 100%;
   justify-content: space-between;
   color: white;
+  align-items: center;
+}
+.nav a {
+  color: white;
+  text-decoration: none;
 }
 .palettes {
   box-sizing: border-box;

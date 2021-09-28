@@ -14,6 +14,7 @@ export default class PaletteList extends Component {
         <div className="container">
           <nav className="nav">
             <h1>Color Project</h1>
+            <Link to="/palette/new">Create Palette</Link>
           </nav>
           <div className="palettes">
             {palettes.map((p) => (
