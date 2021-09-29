@@ -14,6 +14,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { ChromePicker } from "react-color";
 import Button from "@mui/material/Button";
 import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
+import { arrayMove } from "react-sortable-hoc";
 import "./NewPaletteForm.css";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
@@ -64,11 +66,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [currentColor, setCurrentColor] = React.useState("teal");
   const [colors, setColors] = React.useState([]);
+  const [newPaletteName, setNewPaletteName] = React.useState("");
   const [newName, setNewName] = React.useState("");
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -80,12 +83,34 @@ export default function NewPaletteForm() {
   const addNewColor = () => {
     const newColor = { color: currentColor, name: newName };
     setColors([...colors, newColor]);
+    console.log(colors);
     setNewName("");
   };
   const handleChange = (evt) => {
     setNewName(evt.target.value);
   };
-
+  const handleNameChange = (evt) => {
+    setNewPaletteName(evt.target.value);
+  };
+  const handleSubmit = () => {
+    let newName = newPaletteName;
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      colors: colors,
+    };
+    props.savePalette(newPalette);
+    props.history.push("/");
+  };
+  const handleDeletion = (colorName) => {
+    console.log(colors);
+    let newColors = colors.filter((c) => c.name !== colorName);
+    console.log(newColors);
+    setColors(newColors);
+  };
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -103,6 +128,20 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap component="div">
             Persistent drawer
           </Typography>
+          <ValidatorForm onSubmit={handleSubmit}>
+            <TextValidator
+              label="newPaletteName"
+              value={newPaletteName}
+              name="newPaletteName"
+              onChange={handleNameChange}
+              validators={["required"]}
+              errorMessages={["Enter palette name"]}
+            />
+
+            <Button variant="contained" color="primary" type="submit">
+              Save palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -163,10 +202,12 @@ export default function NewPaletteForm() {
       </Drawer>
       <Main className="main" open={open}>
         <DrawerHeader />
-
-        {colors.map((c) => (
-          <DraggableColorBox color={c.color} name={c.name} />
-        ))}
+        <DraggableColorList
+          onSortEnd={onSortEnd}
+          colors={colors}
+          handleDeletion={handleDeletion}
+          axis="xy"
+        />
       </Main>
     </Box>
   );
