@@ -204,6 +204,7 @@ export default function NewPaletteForm(props) {
         <DrawerHeader />
         <DraggableColorList
           onSortEnd={onSortEnd}
+          distance={1}
           colors={colors}
           handleDeletion={handleDeletion}
           axis="xy"
