@@ -13,6 +13,11 @@
   justify-content: flex-end;
   align-items: center;
   font-weight: bold;
+  font-family: "Italianno", cursive;
+  font-size: 1.5rem;
+}
+.palette-footer * {
+  font-family: "Italianno", cursive;
 }
 .emoji {
   font-size: 1.5rem;

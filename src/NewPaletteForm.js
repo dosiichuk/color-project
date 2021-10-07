@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -13,7 +14,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { ChromePicker } from "react-color";
 import Button from "@mui/material/Button";
-import DraggableColorBox from "./DraggableColorBox";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import "./NewPaletteForm.css";
@@ -70,7 +70,7 @@ export default function NewPaletteForm(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [currentColor, setCurrentColor] = React.useState("teal");
-  const [colors, setColors] = React.useState([]);
+  const [colors, setColors] = React.useState([...props.palettes[0].colors]);
   const [newPaletteName, setNewPaletteName] = React.useState("");
   const [newName, setNewName] = React.useState("");
   const handleDrawerOpen = () => {
@@ -111,6 +111,14 @@ export default function NewPaletteForm(props) {
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
+  const clearColors = () => {
+    setColors([]);
+  };
+  const addRandomColor = () => {
+    const allColors = props.palettes.map((p) => p.colors).flat();
+    const rand = Math.floor(Math.random() * allColors.length);
+    setColors([...colors, allColors[rand]]);
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -126,22 +134,29 @@ export default function NewPaletteForm(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Create a new palette
           </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              label="newPaletteName"
-              value={newPaletteName}
-              name="newPaletteName"
-              onChange={handleNameChange}
-              validators={["required"]}
-              errorMessages={["Enter palette name"]}
-            />
+          <div className="nav-btns">
+            <ValidatorForm onSubmit={handleSubmit}>
+              <TextValidator
+                label="New palette name"
+                value={newPaletteName}
+                name="newPaletteName"
+                onChange={handleNameChange}
+                validators={["required"]}
+                errorMessages={["Enter palette name"]}
+              />
 
-            <Button variant="contained" color="primary" type="submit">
-              Save palette
-            </Button>
-          </ValidatorForm>
+              <Button variant="contained" color="primary" type="submit">
+                Save palette
+              </Button>
+              <Link to="/">
+                <Button variant="contained" color="secondary">
+                  Go back
+                </Button>
+              </Link>
+            </ValidatorForm>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -169,36 +184,45 @@ export default function NewPaletteForm(props) {
 
         <Divider />
         <Typography variant="h4">Make you own palette</Typography>
-        <div>
-          <Button variant="contained" color="secondary">
-            Clear Palette
-          </Button>
-          <Button variant="contained" color="primary">
-            Random Color
-          </Button>
-        </div>
-        <ChromePicker
-          color={currentColor}
-          onChangeComplete={(newColor) => {
-            setCurrentColor(newColor.hex);
-            console.log(currentColor);
-          }}
-        />
-        <ValidatorForm onSubmit={() => addNewColor()}>
-          <TextValidator
-            value={newName}
-            onChange={handleChange}
-            validators={["required"]}
-            errorMessages={["This field is required"]}
+        <div className="picker-container">
+          <div className="buttons">
+            <Button variant="contained" color="secondary" onClick={clearColors}>
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addRandomColor}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ChromePicker
+            className="picker"
+            color={currentColor}
+            onChangeComplete={(newColor) => {
+              setCurrentColor(newColor.hex);
+            }}
           />
-          <Button
-            variant="contained"
-            style={{ backgroundColor: currentColor }}
-            type="submit"
-          >
-            Add Color
-          </Button>
-        </ValidatorForm>
+
+          <ValidatorForm className="color-form" onSubmit={() => addNewColor()}>
+            <TextValidator
+              className="colorName"
+              value={newName}
+              onChange={handleChange}
+              validators={["required"]}
+              errorMessages={["This field is required"]}
+            />
+            <Button
+              className="add-color-button"
+              variant="contained"
+              style={{ backgroundColor: currentColor }}
+              type="submit"
+            >
+              Add Color
+            </Button>
+          </ValidatorForm>
+        </div>
       </Drawer>
       <Main className="main" open={open}>
         <DrawerHeader />

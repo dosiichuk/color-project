@@ -1,10 +1,20 @@
 .root {
-  background: blue;
+  background: rgb(127, 127, 255);
   height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
+h1 {
+  font-family: "Italianno", cursive;
+  font-size: 2.5rem;
+}
+@media (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
 .container {
   width: 50%;
   display: flex;
@@ -22,7 +32,14 @@
 .nav a {
   color: white;
   text-decoration: none;
+  font-size: 2rem;
 }
+@media (max-width: 400px) {
+  .nav a {
+    font-size: 1.5rem;
+  }
+}
+
 .palettes {
   box-sizing: border-box;
   width: 100%;
@@ -30,4 +47,21 @@
   grid-template-columns: repeat(3, 30%);
   column-gap: 5%;
   row-gap: 1%;
+}
+
+@media (max-width: 1200px) {
+  .palettes {
+    grid-template-columns: repeat(2, 50%);
+  }
+  .container {
+    width: 80%;
+  }
+}
+@media (max-width: 600px) {
+  .palettes {
+    grid-template-columns: repeat(1, 100%);
+  }
+  .container {
+    width: 80%;
+  }
 }

@@ -1,5 +1,6 @@
 .Navbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   height: 6vh;
@@ -8,21 +9,28 @@
   margin-right: 15px;
   padding: 0 13px;
   font-size: 22px;
-  background-color: rgb(231, 225, 225);
+  background-color: rgb(255, 255, 255);
   font-family: "Times New Roman", Times, serif;
   height: 100%;
   display: flex;
   align-items: center;
+  font-family: "Italianno", cursive;
+  font-size: 3rem;
 }
 .logo a {
   text-decoration: none;
-  color: black;
+  color: rgb(145, 132, 60);
 }
 
 .slider {
   width: 340px;
   margin: 0 10px;
   display: inline-block;
+}
+@media (max-width: 1000px) {
+  .slider {
+    display: none;
+  }
 }
 .rc-slider-track {
   background-color: transparent;

@@ -1,3 +1,48 @@
 Main {
   height: 100vh;
 }
+.MuiToolbar-root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.nav-btns form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-btns form * {
+  display: inline-block;
+  margin: 0 0.2rem;
+}
+.picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+.buttons Button {
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+.add-color-button {
+  width: 100%;
+}
+.picker {
+  width: 100% !important;
+}
+.color-form {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0.7rem 0;
+}
+.color-form .colorName {
+  width: 100%;
+}

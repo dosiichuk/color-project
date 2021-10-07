@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
-
+@media (max-width: 1200px) {
+  html {
+    font-size: 72.5%;
+  }
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
