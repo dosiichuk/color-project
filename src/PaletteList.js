@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./PaletteList.css";
+import { palette } from "@mui/system";
 
 export default class PaletteList extends Component {
   constructor(props) {
@@ -23,15 +25,18 @@ export default class PaletteList extends Component {
             <h1>Color Project</h1>
             <Link to="/palette/new">Create Palette</Link>
           </nav>
-          <div className="palettes">
+
+          <TransitionGroup className="palettes">
             {palettes.map((p) => (
-              <MiniPalette
-                {...p}
-                handleClick={() => this.goToPalette(p.id)}
-                handleDelete={this.handleDelete}
-              />
+              <CSSTransition key={p.id} classNames="fade" timeout={500}>
+                <MiniPalette
+                  {...p}
+                  handleClick={() => this.goToPalette(p.id)}
+                  handleDelete={this.handleDelete}
+                />
+              </CSSTransition>
             ))}
-          </div>
+          </TransitionGroup>
         </div>
       </div>
     );

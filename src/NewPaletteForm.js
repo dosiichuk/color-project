@@ -18,6 +18,7 @@ import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import "./NewPaletteForm.css";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import seedColors from "./seedColors";
 
 const drawerWidth = 400;
 
@@ -70,7 +71,7 @@ export default function NewPaletteForm(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [currentColor, setCurrentColor] = React.useState("teal");
-  const [colors, setColors] = React.useState([...props.palettes[0].colors]);
+  const [colors, setColors] = React.useState([...seedColors[0].colors]);
   const [newPaletteName, setNewPaletteName] = React.useState("");
   const [newName, setNewName] = React.useState("");
   const handleDrawerOpen = () => {
@@ -116,7 +117,15 @@ export default function NewPaletteForm(props) {
   };
   const addRandomColor = () => {
     const allColors = props.palettes.map((p) => p.colors).flat();
-    const rand = Math.floor(Math.random() * allColors.length);
+    let rand;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      let randomColor = allColors[rand];
+      isDuplicateColor = colors.some(
+        (color) => color.name === randomColor.name
+      );
+    }
     setColors([...colors, allColors[rand]]);
   };
   return (
