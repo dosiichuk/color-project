@@ -1,63 +1,64 @@
-import React from "react";
-import { makeStyles } from "@mui/styles";
-import DeleteIcon from "@mui/icons-material/Delete";
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "white",
-    borderRadius: "5px",
-    border: "1px solid black",
-    padding: "0.5rem",
-    position: "relative",
-    overflow: "hidden",
-    cursor: "pointer",
-    "&:hover svg": {
-      opacity: "1",
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    border: '1px solid white',
+    padding: '0.5rem',
+    position: 'relative',
+    overflow: 'hidden',
+    cursor: 'pointer',
+    '&:hover svg': {
+      opacity: '1',
     },
   },
   colors: {
-    backgroundColor: "grey",
-    height: "150px",
+    backgroundColor: 'grey',
+    height: '150px',
 
-    width: "100%",
-    borderRadius: "5px",
-    overflow: "hidden",
+    width: '100%',
+    borderRadius: '5px',
+    overflow: 'hidden',
   },
   title: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    margin: "0",
-    color: "black",
-    paddingTop: "0.5rem",
-    fontSize: "1rem",
-    position: "relative",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '0',
+    marginBottom: '1rem',
+    color: 'black',
+    paddingTop: '0.5rem',
+    fontSize: '1rem',
+    position: 'relative',
   },
   emoji: {
-    marginLeft: "0.5em",
-    fontSize: "1.5rem",
+    marginLeft: '0.5em',
+    fontSize: '1.5rem',
   },
   miniColor: {
-    height: "27%",
-    width: "20%",
-    display: "inline-block",
-    margin: "0 auto",
-    position: "relative",
-    marginBottom: "-5.5px",
+    height: '27%',
+    width: '20%',
+    display: 'inline-block',
+    margin: '0 auto',
+    position: 'relative',
+    marginBottom: '-5.5px',
   },
 
   deleteIcon: {
-    color: "white",
-    backgroundColor: "red",
-    width: "20px",
-    height: "20px",
-    position: "absolute",
-    right: "0px",
-    top: "0px",
-    padding: "10px",
-    zIndex: "10",
-    opacity: "0",
-    transition: "all 0.5s",
+    color: 'white',
+    backgroundColor: 'red',
+    width: '20px',
+    height: '20px',
+    position: 'absolute',
+    right: '0px',
+    top: '0px',
+    padding: '10px',
+    zIndex: '10',
+    opacity: '0',
+    transition: 'all 0.5s',
   },
 });
 
