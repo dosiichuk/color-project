@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import MiniPalette from "./MiniPalette";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./PaletteList.css";
-import { palette } from "@mui/system";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import MiniPalette from '../Minipalette/MiniPalette';
+import './PaletteList.css';
 
 export default class PaletteList extends Component {
   constructor(props) {

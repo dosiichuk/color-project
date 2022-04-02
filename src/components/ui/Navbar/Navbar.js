@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import "./Navbar.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import './Navbar.css';
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { format: "hex", open: false };
+    this.state = { format: 'hex', open: false };
     this.handleChange = this.handleChange.bind(this);
     this.closeSnackbar = this.closeSnackbar.bind(this);
   }
@@ -33,7 +33,7 @@ export default class Navbar extends Component {
         </div>
         {this.props.showingAllColors && (
           <div className="slider-container">
-            <span>Level: {level}</span>
+            <span>Color brightness: {level}</span>
             <div className="slider">
               <Slider
                 defaultValue={level}
@@ -55,11 +55,11 @@ export default class Navbar extends Component {
           </Select>
         </div>
         <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           open={this.state.open}
           autoHideDuration={3000}
           message={<span id="message-id">Format changed to {format}!</span>}
-          ContentProps={{ "aria-describedby": "message-id" }}
+          ContentProps={{ 'aria-describedby': 'message-id' }}
           onClose={this.closeSnackbar}
           action={[
             <IconButton

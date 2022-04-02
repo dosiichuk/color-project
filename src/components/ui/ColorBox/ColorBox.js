@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Link } from "react-router-dom";
-import "./ColorBox.css";
+import React, { Component } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link } from 'react-router-dom';
+import './ColorBox.css';
 
 class ColorBox extends Component {
   constructor(props) {
@@ -22,9 +22,9 @@ class ColorBox extends Component {
         <div style={{ background }} className="ColorBox">
           <div
             style={{ background }}
-            className={`copy-overlay ${copied && "show"}`}
+            className={`copy-overlay ${copied && 'show'}`}
           ></div>
-          <div className={`copy-msg ${copied && "show"}`}>
+          <div className={`copy-msg ${copied && 'show'}`}>
             <h1>COPIED!</h1>
             <p>{this.props.background}</p>
           </div>

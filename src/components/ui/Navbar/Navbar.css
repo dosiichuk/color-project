@@ -3,18 +3,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  height: 6vh;
+  height: 9vh;
 }
 .logo {
   margin-right: 15px;
   padding: 0 13px;
   font-size: 22px;
   background-color: rgb(255, 255, 255);
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   height: 100%;
   display: flex;
   align-items: center;
-  font-family: "Italianno", cursive;
+  font-family: 'Italianno', cursive;
   font-size: 3rem;
 }
 .logo a {

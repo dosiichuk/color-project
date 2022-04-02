@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import "./App.css";
-import Palette from "./Palette";
-import PaletteList from "./PaletteList";
-import SingleColorPalette from "./SingleColorPalette";
-import NewPaletteForm from "./NewPaletteForm";
-import seedColors from "./seedColors";
-import { generatePalette } from "./colorHelpers";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Palette from './components/ui/Palette/Palette';
+import PaletteList from './components/ui/PaletteList/PaletteList';
+import SingleColorPalette from './components/ui/SingleColorPalette/SingleColorPalette';
+import NewPaletteForm from './components/ui/NewPaletteForm/NewPaletteForm';
+import seedColors from './seed-data/seedColors';
+import { generatePalette } from './components/utils/colorHelpers';
+
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
+    const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
     this.savePalette = this.savePalette.bind(this);
     this.state = { palettes: savedPalettes || seedColors };
     this.findPalette = this.findPalette.bind(this);
@@ -42,7 +43,7 @@ class App extends Component {
   }
   syncLocalStorage() {
     window.localStorage.setItem(
-      "palettes",
+      'palettes',
       JSON.stringify(this.state.palettes)
     );
   }
@@ -122,10 +123,6 @@ class App extends Component {
           </TransitionGroup>
         )}
       ></Route>
-
-      // <div>
-      //   <Palette palette={generatePalette(seedColors[4])} />
-      // </div>
     );
   }
 }

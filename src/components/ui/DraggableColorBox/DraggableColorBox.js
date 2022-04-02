@@ -1,7 +1,7 @@
-import React from "react";
-import "./DraggableColorBox.css";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { SortableElement } from "react-sortable-hoc";
+import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { SortableElement } from 'react-sortable-hoc';
+import './DraggableColorBox.css';
 
 const DraggableColorBox = SortableElement((props) => {
   return (
