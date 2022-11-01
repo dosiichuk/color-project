@@ -85,7 +85,6 @@ export default function NewPaletteForm(props) {
   const addNewColor = () => {
     const newColor = { color: currentColor, name: newName };
     setColors([...colors, newColor]);
-    console.log(colors);
     setNewName('');
   };
   const handleChange = (evt) => {
@@ -105,9 +104,7 @@ export default function NewPaletteForm(props) {
     props.history.push('/');
   };
   const handleDeletion = (colorName) => {
-    console.log(colors);
     let newColors = colors.filter((c) => c.name !== colorName);
-    console.log(newColors);
     setColors(newColors);
   };
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -199,6 +196,7 @@ export default function NewPaletteForm(props) {
             <Button variant="contained" color="secondary" onClick={clearColors}>
               Clear Palette
             </Button>
+           
             <Button
               variant="contained"
               color="primary"
